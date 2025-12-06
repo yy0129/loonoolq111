@@ -1,48 +1,82 @@
-/* 页面基础样式重置 */
+/* 基础样式重置 - 适配 Vercel 环境 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "思源黑体", "Microsoft YaHei", sans-serif;
+    font-family: "思源黑体", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* 页面背景与全局样式 */
+/* 页面容器 - 居中布局 */
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 页面背景 */
 body {
     background-color: #f8f9fa;
-    padding: 20px;
+    color: #212529;
 }
 
 /* 标题样式 */
 .page-title {
     text-align: center;
-    color: #212529;
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 30px;
     padding-bottom: 15px;
     border-bottom: 1px solid #e9ecef;
+    color: #2F54EB;
 }
 
-/* 流程图容器样式 */
+/* 流程图容器 - 优化 Vercel 显示效果 */
 .mermaid-container {
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
     padding: 30px;
-    overflow: auto; /* 适配小屏幕滚动 */
-    min-height: 600px; /* 防止内容过小时容器塌陷 */
+    overflow: auto;
+    min-height: 650px;
+    margin-bottom: 30px;
 }
 
 /* 加载提示样式 */
 .loading {
     text-align: center;
-    padding: 50px;
+    padding: 80px 0;
     color: #6c757d;
     font-size: 16px;
+    transition: opacity 0.3s ease;
 }
 
-/* 响应式适配（小屏幕调整） */
+/* 流程图 SVG 自适应 - 关键适配 Vercel 部署 */
+.mermaid {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.mermaid svg {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+}
+
+/* 页脚样式 */
+.page-footer {
+    text-align: center;
+    color: #6c757d;
+    font-size: 14px;
+    padding: 20px 0;
+    border-top: 1px solid #e9ecef;
+}
+
+/* 响应式适配 - 适配移动端访问 */
 @media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
     .page-title {
         font-size: 20px;
         margin-bottom: 20px;
@@ -50,17 +84,18 @@ body {
 
     .mermaid-container {
         padding: 15px;
-        min-height: 400px;
+        min-height: 450px;
     }
 
     .loading {
-        padding: 30px;
+        padding: 50px 0;
         font-size: 14px;
     }
 }
 
-/* 流程图SVG自适应样式 */
-.mermaid svg {
-    width: 100% !important;
-    height: auto !important;
+/* 适配平板设备 */
+@media (min-width: 769px) and (max-width: 1200px) {
+    .mermaid-container {
+        min-height: 550px;
+    }
 }
